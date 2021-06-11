@@ -1,0 +1,15 @@
+.dashboard {
+  .panel-container {
+    padding: 1rem;
+  }
+
+  .left-panel,
+  .right-panel {
+    padding: 1rem;
+  }
+  .left-panel {
+    border-right: 1px solid lightslategrey;
+  }
+  .right-panel {
+  }
+}

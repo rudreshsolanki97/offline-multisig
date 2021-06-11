@@ -1,0 +1,15 @@
+.primary-text {
+  font-size: 3rem;
+  font-weight: 500;
+}
+
+.secondary-text {
+  font-size: 1.8rem;
+}
+
+$overall-font-primary:3rem;
+$overall-font-secondary:1.8rem;
+
+body {
+  font-size: $overall-font-secondary;
+}
