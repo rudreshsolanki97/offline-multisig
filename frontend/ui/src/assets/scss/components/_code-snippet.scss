@@ -1,0 +1,24 @@
+.code-snippet {
+  background-color: #172127;
+  border: lightgray;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  color: white;
+
+  .copy-btn {
+    float: right;
+  }
+}
+
+.accordion__code-snippet {
+  margin: 10px;
+}
+
+.accordion__code-snippet .card .card-header {
+  cursor: pointer;
+}
+
+.u-float-r {
+  float: right;
+}

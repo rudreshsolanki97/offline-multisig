@@ -9,6 +9,10 @@
 @import "base/typography";
 @import "base/utilities";
 
+@import "components/code-snippet";
+@import "components/signing-form";
+@import "components/wallet-connect";
+
 @import "layouts/header";
 @import "layouts/main-panel";
 @import "layouts/footer";

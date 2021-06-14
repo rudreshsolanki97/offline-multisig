@@ -6,4 +6,18 @@
       text-transform: uppercase;
     }
   }
+
+  &__field,
+  &__value {
+    input {
+      width: 100%;
+    }
+
+    margin-bottom: 1rem;
+  }
+
+  &__submit {
+    margin: 1rem;
+    float: right;
+  }
 }

@@ -5,26 +5,29 @@ import Switch from "react-switch";
 import { TransferType } from "../helpers/constant";
 import { Computehash, IsValidAddress, Sign } from "../helpers/crypto";
 import { SwitchStyle2 } from "./common";
+import CodeSnippet from "./common/CodeSnippet";
+
+const InitialForm = {
+  amount: { key: "Amount", value: "", info: "" },
+  to: { key: "To", value: "", info: "" },
+  nonce: { key: "Nonce", value: "", info: "" },
+  tokenAddress: {
+    key: "Token Address",
+    value: "",
+    info: "",
+  },
+  isToken: false,
+  valid: false,
+  computed: false,
+  hash: "",
+  signature: "",
+};
 
 class SigningForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      amount: { key: "Amount", value: "", info: "" },
-      to: { key: "To", value: "", info: "" },
-      nonce: { key: "Nonce", value: "", info: "" },
-      tokenAddress: {
-        key: "Token Address",
-        value: "",
-        info: "",
-      },
-      isToken: false,
-      valid: false,
-      computed: false,
-      hash: "",
-      signature: "",
-    };
+    this.state = { ...InitialForm };
   }
 
   setAndValidate(stateName, value, type) {
@@ -80,7 +83,16 @@ class SigningForm extends React.Component {
 
   render() {
     const resetBtn = this.state.computed ? (
-      <Button className="reset-button">Reset</Button>
+      <Button
+        onClick={() => {
+          this.setState({ ...InitialForm });
+          this.props.updateHash("");
+          this.props.updateSignature("");
+        }}
+        className="reset-button"
+      >
+        Reset
+      </Button>
     ) : (
       ""
     );
@@ -89,7 +101,9 @@ class SigningForm extends React.Component {
       <div className="signing-form">
         <Container>
           <Row>
-            <Col className="signing-form__title">Compute Signature</Col>
+            <Col className="signing-form__title u-text-center">
+              <h2>Compute Signature</h2>
+            </Col>
           </Row>
 
           <Row>
@@ -138,9 +152,9 @@ class SigningForm extends React.Component {
                     to: this.state.to.value,
                     amount: this.state.amount.value,
                   });
-                  console.log("hashhashhash", hash, this.props.privateKey);
+
                   const sig = Sign(this.props.privateKey, hash);
-                  console.log("signature0", sig);
+
                   this.setState(
                     { hash: hash, computed: true, signature: sig.signature },
                     () => {
@@ -156,9 +170,31 @@ class SigningForm extends React.Component {
             </Col>
           </Row>
 
-          <Row>{this.state.hash}</Row>
+          {this.state.computed ? (
+            <>
+              <Row>
+                <Col>
+                  <CodeSnippet
+                    title="Message Hash"
+                    collapsable={true}
+                    code={this.state.hash}
+                  ></CodeSnippet>
+                </Col>
+              </Row>
 
-          <Row>{this.state.signature}</Row>
+              <Row>
+                <Col>
+                  <CodeSnippet
+                    title="Signature"
+                    collapsable={true}
+                    code={this.state.signature}
+                  ></CodeSnippet>
+                </Col>
+              </Row>
+            </>
+          ) : (
+            ""
+          )}
         </Container>
       </div>
     );
