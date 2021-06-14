@@ -5,7 +5,10 @@ import AccordionWindow from "./AccordionWindow";
 
 const NamedQR = ({ data, title = "QR Code" }) => {
   return (
-    <AccordionWindow className="accordion__code-snippet u-text-center" title={title}>
+    <AccordionWindow
+      className="accordion__code-snippet u-text-center"
+      title={title}
+    >
       <QRCode value={data} />
     </AccordionWindow>
   );

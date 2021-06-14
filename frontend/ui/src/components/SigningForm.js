@@ -159,7 +159,7 @@ class SigningForm extends React.Component {
                     { hash: hash, computed: true, signature: sig.signature },
                     () => {
                       this.props.updateHash(hash);
-                      this.props.updateSignature(sig);
+                      this.props.updateSignature(sig.signature);
                     }
                   );
                 }}
