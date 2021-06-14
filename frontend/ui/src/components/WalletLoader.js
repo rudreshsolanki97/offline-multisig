@@ -171,7 +171,10 @@ class WalletLoader extends React.Component {
   accountCallback(account) {
     if (account === null)
       this.props.LoadWalletError("Error while fetching account");
-    else this.props.LoadWalletSuccess(account);
+    else {
+      this.props.LoadWalletSuccess(account);
+      this.setState({ showModal: false });
+    }
   }
 
   render() {
